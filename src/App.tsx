@@ -1,13 +1,13 @@
 import Header from "./Header.tsx";
 import Content from "./Content.tsx";
 import "./App.css"
+import {Post} from "./Blog.ts";
+import {data} from "./data.ts";
+import Counter from "./Counter.tsx";
 
 export default function App() {
     //logic
-    const myBlogPosts = [
-        {name: "My First Blog Post 12345", text: "Lorem Ipsum", likes: 3},
-        {name: "My Second Blog post", text: "React", likes: 19}
-    ]
+    const myBlogPosts: Post[] = data;
 
     const myValue = 2;
 
@@ -30,6 +30,8 @@ export default function App() {
                         myOnClick={myOnClick}/>)
                 )
             }
+
+            <Counter />
         </div>
     )
 }

@@ -1,5 +1,4 @@
-
-type ContentProps = {
+export type ContentProps = {
     name: string,
     text: string,
     likes: number,
