@@ -1,13 +1,16 @@
 import Header from "./Header.tsx";
-import Content from "./Content.tsx";
 import "./App.css"
-import {Post} from "./Blog.ts";
 import {data} from "./data.ts";
 import Counter from "./Counter.tsx";
+import {Route, Routes} from "react-router";
+import BlogPage from "./BlogPage.tsx";
+import BlogDetails from "./BlogDetails.tsx";
+import {useState} from "react";
 
 export default function App() {
     //logic
-    const myBlogPosts: Post[] = data;
+
+    const [posts, setPosts] = useState(data)
 
     const myValue = 2;
 
@@ -19,19 +22,14 @@ export default function App() {
     return (
         <div>
             <Header/>
-            <p>Hello World</p>
-            {
-                myBlogPosts.map((blogPost) => (
-                    <Content
-                        name={blogPost.name}
-                        text={blogPost.text}
-                        likes={blogPost.likes}
-                        // blogPost={blogPost}
-                        myOnClick={myOnClick}/>)
-                )
-            }
 
-            <Counter />
+            <Routes>
+                <Route path={"/"} element={<p>Hello World</p>} />
+                <Route path={"/blog"} element={<BlogPage myBlogPosts={posts} myOnClick={myOnClick} /> } />
+                <Route path={"/blog/:id"} element={<BlogDetails blogPosts={posts}/> } />
+                <Route path={"/counter"} element={<Counter />} />
+
+            </Routes>
         </div>
     )
 }
